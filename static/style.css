@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+::placeholder
+{
+    font-family: 'Rambla', sans-serif;
+    font-size: 20px;
+    color:#B1B1B1;
+}
+#top-bar{
+    background-color: #ffffff;
+    width: 100%;
+    heiht:150px;
+    box-shadow: 0px 0px 4px 0px black;
+}
+
+#logo{
+    margin-left: 60px;
+    padding-top:40px;
+    padding-bottom: 10px;
+    width: 345px;
+    height: 70px;
+}
+
+#logoimg{
+    width: 75%;
+    height: 75%;
+}
+#content
+{
+    height: 900px;
+    width: 100%;
+    padding-top: 90px;
+}
+#calendar
+{
+    height: 500px;
+    width: 480px;
+    background-color: aquamarine;
+    margin-left: 200px;
+    float: left;
+
+
+}
+
+#searchbars{
+    margin-left: 800px;
+    height: 100px;
+    width: 900px;
+
+}
+
+.search{
+    width: 400px;
+    height: 60px;
+    background-color: white;
+    float:left;
+    margin-left: 30px;
+    margin-top: 5px;
+    border-radius: 20px;
+    border-width: 0px;
+    box-shadow: 0px 11px 44px 0 rgba(19,10,46,0.07);
+
+}
+
+.browser
+{
+    width: 80%;
+    height: 80%;
+    margin-left: 80px;
+    margin-top: 5px;
+    border: none;
+    outline: none;
+    font-family: 'Rambla', sans-serif;
+    font-size: 20px;
+    color:black;
+
+}
+#specializationImg{
+    background-color: #19DBAC;
+    height: 60px;
+    width: 60px;
+    position: absolute;
+}
+#specialistImg{
+    background-color: #19DBAC;
+    height: 60px;
+    width: 60px;
+    position: absolute;
+}
+#specialist{
+    margin-left: 30px;
+}
+
+#doctorList{
+    margin-left: 830px;
+    width: 830px;
+    height: 400px;
+    background-color: antiquewhite;
+}
+
+#searchButton{
+    height: 70px;
+    width: 215px;
+    background-color: #19DBAC;
+    margin-left: 1150px;
+    margin-top: 50px;
+    font-family:'Rambla', sans-serif;
+    font-size: 24px;
+    color:white;
+    border-radius: 20px;
+    border-width: 0px;
+    box-shadow: 0px 4px 4px 0 rgba(0,0,0,0.25);
+
+}
+
+#doctorImg{
+    position: absolute;
+    top:520px;
+    left:0px;
+    height: 450px;
+    width:auto;
+}
+
+#footer{
+    width: 100%;
+    height: 140px;
+    margin-top: 140px;
+    background-color: #19DBAC;
+}
