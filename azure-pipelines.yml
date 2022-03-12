@@ -63,7 +63,7 @@ stages:
     - task: Npm@1
       inputs:
         command: 'install'
-        workingDir: '/static'
+        workingDir: 'static'
 
 - stage: Deploy
   displayName: 'Deploy Web App'
