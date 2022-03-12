@@ -60,10 +60,9 @@ stages:
       displayName: 'Upload package'
       artifact: drop
 
-    - task: Npm@1
+    - task: CmdLine@2
       inputs:
-        command: 'install'
-        workingDir: '$(projectRoot)/static'
+        script: 'pwd'
 
 - stage: Deploy
   displayName: 'Deploy Web App'
