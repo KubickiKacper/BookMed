@@ -60,10 +60,6 @@ stages:
       displayName: 'Upload package'
       artifact: drop
 
-    - task: CmdLine@2
-      inputs:
-        script: 'cd static && npm install'
-
 - stage: Deploy
   displayName: 'Deploy Web App'
   dependsOn: Build
