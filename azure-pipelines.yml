@@ -63,6 +63,9 @@ stages:
     - task: CmdLine@2
       inputs:
         script: 'pwd'
+    - task: Npm@1
+      inputs:
+        command: 'install'
 
 - stage: Deploy
   displayName: 'Deploy Web App'
