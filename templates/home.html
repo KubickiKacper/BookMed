@@ -1,32 +1,44 @@
 {% extends "base.html" %}
 {% block content %}
-    {#  Calendar based on color-calendar package  #}
-    <div id="calendar"></div>
+    <div class="row justify-content-between">
 
-    <div id="searchbars">
-
-        <div class="search" id="specialization">
-            <div id="specializationImg"></div>
-            <input class="browser" list="browsers" id="specializationBrowser" placeholder="Wybierz specjalizację...">
-            <datalist id="browsers">
-                <option value="1">
-                <option value="2">
-            </datalist>
+        <div id="calendar-column" class="col-lg-4">
+            {#  Calendar based on color-calendar package  #}
+            <div id="calendar"></div>
+            <img id="doctorImg" src="../static/images/homepagedoctor.png" alt="doctor image">
+            <img id="doctorImg_next_to_calendar" class="d-xl-none" src="../static/images/homepagedoctor.png"
+                 alt="doctor image">
         </div>
-        <div class="search" id="specialist">
-            <div id="specialistImg"></div>
-            <input type="text" class="browser" id="specialisBrowser" placeholder="Wybierz specjalistę...">
+
+        <div id="doctors-column" class="col-xxl-8 col-xl-7 mt-sm-4 mt-xl-0">
+            <div id="filters">
+                <div class="search" id="specialization">
+                    <i class="bi bi-clipboard-heart search-input-icon"></i>
+                    <input class="browser" list="browsers" id="specializationBrowser"
+                           placeholder="Wybierz specjalizację...">
+                    <datalist id="browsers">
+                        <option value="1">
+                        <option value="2">
+                    </datalist>
+                </div>
+                <div class="search" id="specialist">
+                    <i class="bi bi-person search-input-icon"></i>
+                    <input type="text" class="browser" id="specialisBrowser"
+                           placeholder="Wybierz specjalistę...">
+                </div>
+            </div>
+            <div id="doctorList">
+                <button id="searchButton" class="btn btn-primary" type="button">
+                    <strong>Szukaj</strong>
+                </button>
+            </div>
         </div>
     </div>
-    <div id="doctorList">
-    </div>
 
-    <button id="searchButton" class="btn btn-primary" type="button"><strong>Szukaj</strong></button>
 
-    <img id="doctorImg" src="../static/images/homepagedoctor.png" alt="doctor image">
-    <div id="footer">
 
-    </div>
+
+
 
 
 
