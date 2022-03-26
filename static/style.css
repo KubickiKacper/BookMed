@@ -25,9 +25,8 @@ body {
 }
 
 #content {
-    height: 900px;
     width: 100%;
-    padding-top: 90px;
+    padding-top: 50px;
 }
 
 #calendar {
@@ -59,13 +58,23 @@ body {
     position: absolute;
 }
 
+#specialization {
+    margin-right: 10px;
+}
+
 #specialist {
-    margin-left: 30px;
+    margin-left: 10px;
 }
 
 #doctorList {
     /*margin-left: 830px;*/
     /*width: 830px;*/
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
 }
 
 #searchButton {
@@ -112,9 +121,41 @@ body {
         display: none;
     }
 
+    #filters {
+        flex-wrap: wrap !important;
+    }
+
+    #specialization {
+        margin-right: 0;
+    }
+
+    #specialist {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
     #calendar-column {
         display: flex;
         justify-content: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .doctor_li_content {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    .doctor_li {
+        height: 180px !important;
+        background-image: url("../static/images/doctor_li_bg.png");
+        background-repeat: no-repeat;
+        background-position: right;
+    }
+
+    .doctor_img_small_circle {
+        width: 80px !important;
+        height: 80px !important;
     }
 }
 
@@ -149,7 +190,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    max-width: 400px;
+    /*max-width: 400px;*/
     height: 60px;
     background-color: white;
     float: left;
@@ -176,6 +217,48 @@ body {
     color: black;
     background: none;
     padding-right: 10px;
+}
+
+.doctor_li {
+    height: 90px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 100%;
+    margin-top: 10px;
+    border-radius: 20px;
+    box-shadow: 0 11px 44px 0 rgba(19, 10, 46, 0.07);
+}
+
+.doctor_li_text {
+    line-height: 40px;
+    /*margin-left: -100px !important;*/
+}
+
+.doctor_li_content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.doctor_li_label {
+    /*position: absolute;*/
+    color: rgba(124, 124, 124, 0.49);
+    line-height: 10px;
+}
+
+.doctor_img_small_circle {
+    height: 70px;
+    width: 70px;
+    margin: 10px 10px 10px 20px;
+    background-color: #19DBAC;
+    border: 1px solid rgba(124, 124, 124, 0.49);
+}
+
+.doctor_li_back_image {
+    transform: rotate(45deg);
 }
 
 /* CALENDAR */
