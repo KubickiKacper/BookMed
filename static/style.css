@@ -257,6 +257,14 @@ body {
     border: 1px solid rgba(124, 124, 124, 0.49);
 }
 
+.doctor_img_big_circle {
+    height: 250px;
+    width: 250px;
+    margin: 10px 10px 10px 20px;
+    background-color: #19DBAC;
+    border: 1px solid rgba(124, 124, 124, 0.49);
+}
+
 .doctor_li_back_image {
     transform: rotate(45deg);
 }
@@ -305,4 +313,95 @@ body {
 
 .calendar__day-box {
     border-radius: 100px !important;
+}
+
+#review{
+    font-size: 24px;
+    font-family: 'Rambla', sans-serif;
+    padding-left: 30px;
+}
+
+.comments{
+    margin-top: 10px;
+    background-color: white;
+    height: 180px;
+    box-shadow: 0px 41px 115px 0px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+#more_comments{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    height: 40px;
+    width: 50%;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #19dbac;
+    font-family: 'Rambla', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    border: 0;
+}
+
+#doctor_name{
+    margin-left: 10px;
+    margin-top: 20px;
+    font-family: 'Rambla', sans-serif;
+    font-size: 55px;
+    font-weight: bold;
+}
+
+.doctor_info_content{
+    margin-left: 10px;
+    margin-top: 20px;
+    font-family: 'Rambla', sans-serif;
+    font-size: 20px;
+}
+
+.hospital_img{
+    height: 250px;
+    width: 300px;
+    margin: 10px 10px 10px 20px;
+    background-color: #19DBAC;
+    border-radius: 20px;
+}
+.job_info{
+box-shadow: 0px 41px 115px 0px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+
+#location{
+    border-bottom: 1px solid #B1B1B1;
+}
+.job_info_content
+{
+    margin:5px;
+    font-family: 'Rambla', sans-serif;
+    font-size: 16px;
+}
+#day{
+    margin-top: 5px;
+    font-size: 20px;
+}
+#hour{
+    margin-top: 5px;
+    font-size: 20px;
+    text-align: right;
+}
+
+#reservationButton
+{
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    color:white;
+    background-color: #19dbac;
+    border-radius: 20px;
+    font-family: 'Rambla', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    border: 0;
 }

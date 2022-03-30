@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row justify-content-between">
+        <div id="doctor_basic" class="col" >
+            <img src="../static/images/doctor{{ doctor[5] }}.png" class="doctor_img_big_circle rounded-circle" alt="Doctor Avatar">
+            <div id="review" class="row">
+                Opinie:
+            </div>
+            <div id="comment1" class="row comments">
+                Opinia 1
+            </div>
+            <div id="comment2" class="row comments">
+                Opinia 2
+            </div>
+            <button id="more_comments" class="row" type="button">
+                Pokaż więcej
+            </button>
+
+        </div>
+
+    <div id="doctor_info" class="col-6"  >
+        <div id="doctor_name" class="row ">
+                {{ doctor[1] }} {{ doctor[2] }}
+        </div>
+        <div id="doctor_spec" class="row doctor_info_content">
+                Specjalizacja: {{ doctor[6] }}
+        </div>
+
+         <div id="doctor_aboutme" class="row doctor_info_content">
+                O mnie:<br>
+             Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
+             Integer in commodo elit. Phasellus fermentum <br>
+             malesuada erat sit amet porttitor. Vestibulum ante ipsum <br>
+             primis in faucibus orci luctus et ultrices posuere cubilia <br>
+             curae.
+        </div>
+
+        <div id="doctor_aboutme" class="row doctor_info_content">
+            Usługi:
+
+        </div>
+    </div>
+    <div id="doctor_job_info" class="col job_info" >
+                {#  Calendar based on color-calendar package  #}
+                <img src="../static/images/hospital.png" class="hospital_img " >
+        <div id="location" class="row job_info_content">
+            Adres:<br>
+            {{ doctor[4] }}<br>
+            {{ doctor[3] }}
+        </div>
+        <div id="contact" class="row job_info_content">
+            Kontakt i godziny przyjęć:<br>
+            <div class="bi bi-phone bi-2x"  style="margin-top:5px;font-size:30px"> +48 111 222 333</div>
+        </div>
+
+        <div id="job_time" class="row job_info_content">
+            <div id="day" class="col">
+                Poniedziałek<br>
+                Wtorek<br>
+                Środa<br>
+                Czwartek<br>
+                Piątek<br>
+                Sobota
+            </div>
+            <div id="hour" class="col">
+                    8:00-16:00<br>
+                    8:00-16:00<br>
+                    8:00-16:00<br>
+                    8:00-16:00<br>
+                    8:00-16:00<br>
+                    10:00-14:00
+            </div>
+
+        </div>
+        <button id="reservationButton" type="button">
+            Zarezerwuj termin
+        </button>
+
+        </div>
+    </div>
+{% endblock %}

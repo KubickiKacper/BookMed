@@ -21,3 +21,15 @@ def index():
         doctors=doctors,     # pass variable (list of doctors in this case) to html template file
         specializations=specializations
     )
+
+
+@bp.route("/doctorpage/<doctorid>")
+def doctorpage(doctorid):
+    cursor, db = get_db()
+    cursor.execute("select * from doctors where id=%s",(doctorid,))  # execute SQL statement
+    doctor = cursor.fetchone()
+
+    return render_template(
+             "doctorpage.html",
+             doctor=doctor
+        )
