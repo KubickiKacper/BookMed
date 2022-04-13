@@ -1,18 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="row justify-content-between">
-
-        <div id="calendar-column" class="col-lg-4">
-            {#  Calendar based on color-calendar package  #}
-            <div id="calendar"></div>
-            <img id="doctorImg" src="../static/images/homepagedoctor.png" alt="doctor image">
-            <img id="doctorImg_next_to_calendar" class="d-xl-none" src="../static/images/homepagedoctor.png"
-                 alt="doctor image">
-        </div>
-
-        <div id="doctors-column" class="col-xxl-8 col-xl-7 mt-4 mt-xl-0">
-            <div id="filters">
-                <div class="search" id="specialization">
+       <div id="doctor_basic" class="col-4" >
+        <div id="calendar"></div>
+           <div class="search_list_page" >
                     <i class="bi bi-clipboard-heart search-input-icon"></i>
                     <input class="browser" list="specializations" id="specializationBrowser"
                            placeholder="Wybierz specjalizację...">
@@ -22,7 +13,8 @@
                         {% endfor %}
                     </datalist>
                 </div>
-                <div class="search" id="specialist">
+
+            <div class="search_list_page" >
                     <i class="bi bi-person search-input-icon"></i>
                     <input class="browser" list="specialists" id="specialistBrowser"
                            placeholder="Wybierz specjalistę...">
@@ -32,53 +24,43 @@
                         {% endfor %}
                     </datalist>
                 </div>
-            </div>
-            <div id="doctorList">
-                {# for loop thru all the doctors passed from route #}
-                {#
-                    id              -> doctor[0]
-                    first_name      -> doctor[1]
-                    last_name       -> doctor[2]
-                    city            -> doctor[3]
-                    workplace       -> doctor[4]
-                    photo           -> doctor[5]
-                    specialization  -> doctor[6]
-                #}
-                {% for doctor in doctors %}
-                    <div class="doctor_li">
+
+
+        </div>
+
+
+        <div class="col" >
+            {% for doctor in doctors %}
+                    <div class="doctor_li_list_page">
                         <img src="../static/images/doctor{{ doctor[5] }}.png" class="doctor_img_small_circle rounded-circle" alt="Doctor Avatar">
                         <div class="doctor_li_content">
-                            <div>
+                            <div class="col-3">
                                 <h6 class="doctor_li_label m-0 h-100">Imię i Nazwisko</h6>
                                 <h5 class="doctor_li_text m-0 h-100">{{ doctor[1] }} {{ doctor[2] }}</h5>
                             </div>
-                            <div>
+                            <div  class="col-3">
                                 <h6 class="doctor_li_label m-0 h-100">Specjalizacja</h6>
                                 <h5 class="doctor_li_text m-0 h-100">{{ doctor[6] }}</h5>
                             </div>
-                            <button class="reservation-button-main-page" type="button">
-                                Rezerwuj
-                            </button>
+
+
+                                <div class="col">
+                                    <div class="dateButton">8:00-8:30</div>
+                                    <div class="dateButton">8:00-8:30</div>
+                                    <div class="dateButton">8:00-8:30</div>
+                                </div>
+                                <div class="col">
+                                    <div class="dateButton">8:00-8:30</div>
+                                    <div class="dateButton">8:00-8:30</div>
+                                    <div class="dateButton">8:00-8:30</div>
+                                </div>
+
                         </div>
 
                     </div>
                 {% endfor %}
-
-
-                <button id="searchButton" class="btn btn-primary" type="button">
-                    <strong>Szukaj</strong>
-                </button>
-            </div>
         </div>
+
     </div>
 
-
-
-
-
-
-
-
-
 {% endblock %}
-        

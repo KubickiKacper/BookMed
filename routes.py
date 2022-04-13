@@ -33,3 +33,19 @@ def doctorpage(doctorid):
              "doctorpage.html",
              doctor=doctor
         )
+
+@bp.route("/doctor_list")
+def doctorlist_page():
+    cursor, db = get_db()
+    cursor.execute("select * from doctors")
+    doctors = cursor.fetchall()
+
+    cursor.execute("select distinct specialization from doctors")
+    specializations = cursor.fetchall()
+
+    return render_template(
+        "doctor_list.html",
+        doctors=doctors,
+        specializations=specializations
+    )
+
