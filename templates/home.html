@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+    {% import 'modals.html' as modals %}
     <div class="row justify-content-between">
 
         <div id="calendar-column" class="col-lg-4">
@@ -33,6 +34,9 @@
                     </datalist>
                 </div>
             </div>
+
+            {{ modals.reservationModal() }}
+
             <div id="doctorList">
                 {# for loop thru all the doctors passed from route #}
                 {#
@@ -56,7 +60,15 @@
                                 <h6 class="doctor_li_label m-0 h-100">Specjalizacja</h6>
                                 <h5 class="doctor_li_text m-0 h-100">{{ doctor[6] }}</h5>
                             </div>
-                            <button class="reservation-button-main-page" type="button">
+                            <button
+                                    class="reservation-button"
+                                    type="button"
+                                    onclick="handleReservationBtnClick(
+                                        '../static/images/doctor{{ doctor[5] }}.png',
+                                        '{{ doctor[1] }} {{ doctor[2] }}',
+                                        '{{ doctor[6] }}'
+                                        )"
+                            >
                                 Rezerwuj
                             </button>
                         </div>
@@ -74,7 +86,7 @@
 
 
 
-
+    <script src="../static/reservationBtn.js"></script>
 
 
 

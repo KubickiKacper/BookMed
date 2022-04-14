@@ -1,0 +1,80 @@
+{% macro reservationModal() -%}
+
+<div class="reservation-modal-container" style="display: none">
+    <div class="modal-background"></div>
+    <div class="modal-main">
+        <i class="modal-exit-icon bi-x"></i>
+{#        <h4 class="modal-title">Rezerwacja</h4>#}
+        <div class="modal-header">
+            <div class="doctor_li_modal">
+                <img id="modal-doctor-image" src="../static/images/doctor1.png" class="doctor_img_small_circle rounded-circle" alt="Doctor Avatar">
+                <div class="doctor_li_content">
+                    <div>
+                        <h6 class="doctor_li_label m-0 h-100">Imię i Nazwisko</h6>
+                        <h5 id="modal-doctor-name" class="doctor_li_text m-0 h-100">undefined</h5>
+                    </div>
+                    <div>
+                        <h6 class="doctor_li_label m-0 h-100">Specjalizacja</h6>
+                        <h5 id="modal-doctor-specialization" class="doctor_li_text m-0 h-100">undefined</h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+{#        <hr class="modal-line">#}
+        <div class="modal-body">
+            <div id="filtersModal">
+                <div class="searchModal" id="test_type">
+                    <i class="bi bi-bandaid search-input-icon"></i>
+                    <input class="browser" list="test_types" id="testTypesBrowserModal"
+                           placeholder="Rodzaj badania...">
+                    <datalist id="test_types">
+                        <option value="1">
+                        <option value="2">
+                        <option value="3">
+                    </datalist>
+                </div>
+                <div class="searchModal" id="date_input">
+                    <i class="bi bi-calendar-heart search-input-icon"></i>
+                    <input type="date" id="dateInputReservationModal"
+                           placeholder="Wybierz specjalistę...">
+                </div>
+            </div>
+
+            <div class="visitHours">
+                <div class="visitHour">8:00-8:30</div>
+                <div class="visitHour">9:00-9:30</div>
+                <div class="visitHour">10:00-10:30</div>
+                <div class="visitHour">13:00-13:30</div>
+            </div>
+
+            <div class="infoForDoctor">
+                <label id="labelInfoForDoctor" for="infoForDoctorArea">Informacje dla lekarza:</label>
+                <textarea
+                        id="infoForDoctorArea"
+                        name="infoForDoctorArea"
+                        rows="4"
+                        cols="50"
+                        placeholder="Podaj informacje dla lekarza..."
+                ></textarea>
+            </div>
+
+            <button id="reserveButtonModal" class="btn btn-primary" type="button">
+                <strong>Zarezerwuj</strong>
+            </button>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    let reservationModal = document.getElementsByClassName("reservation-modal-container")[0];
+    let exitIcon = document.getElementsByClassName("modal-exit-icon")[0];
+    exitIcon.addEventListener("click", () => {
+        reservationModal.style.display = "none";
+    })
+
+</script>
+
+{%- endmacro %}
