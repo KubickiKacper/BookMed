@@ -28,9 +28,11 @@ let cal = new Calendar({
     customWeekdayValues: ["N", "Pn", "Wt", "Śr", "Cz", "Pt", "So"],
     // layoutModifiers: ["month-left-align"],
     dateChanged: (currentDate, events) => {
-        console.log("date change", currentDate, events);
+        window.localStorage.setItem('dateSelected', currentDate);
+        // console.log("date change", currentDate);
     },
     monthChanged: (currentDate, events) => {
-        console.log("month change", currentDate, events);
+        window.localStorage.setItem('dateSelected', currentDate);
+        // console.log("month change", currentDate);
     }
 });
