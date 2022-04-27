@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, jsonify
 from db import get_db
+import datetime
 
 bp = Blueprint("app", __name__)
 
@@ -49,3 +50,35 @@ def doctorlist_page():
         specializations=specializations
     )
 
+@bp.route('/add_reservation', methods=['POST'])
+def add_reservation():
+    cursor, db = get_db()
+    cursor.execute("select * from doctors")
+    doctors = cursor.fetchall()
+
+    cursor.execute("select distinct specialization from doctors")
+    specializations = cursor.fetchall()
+
+    #acquiring reservation log content
+    content = request.get_json()
+
+    #converting date format
+    month_name = content["selectedDate"].split()[1]
+    datetime_object = datetime.datetime.strptime(month_name, "%b")
+    month_number_str = str(datetime_object.month) 
+
+    if len(month_number_str) < 2:
+        month_number_str = '0' + month_number_str
+
+    date_to_save = content["selectedDate"].split()[3] + "-" + month_number_str + "-" + content["selectedDate"].split()[2]
+    
+    query = """INSERT INTO reservations VALUES ('', %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+    tuple = (content["doctorId"], content["testType"], date_to_save, content["hourFrom"], content["hourTo"], content["patientName"].split()[0],content["patientName"].split()[1], content["patientPhone"], content["infoForDoctor"])
+    cursor.execute(query, tuple)
+    db.commit()
+    
+    return render_template(
+        "doctor_list.html",
+        doctors=doctors,
+        specializations=specializations
+    )

@@ -125,6 +125,15 @@ function handleSubmitModal() {
     };
 
     console.log(submitObject);
+    
+    fetch("/add_reservation",
+    {
+        method: "POST",
+        body: JSON.stringify(submitObject), 
+        headers: {"Content-Type" : "application/json"}
+    })
+    .then(function(res){ return res.json(); })
+    .then(function(data){ alert( JSON.stringify( data ) ) })
 
     handleExitModal();
 }
