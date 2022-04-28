@@ -12,34 +12,43 @@ function handleReservationBtnClick(doctorImgSrc, doctorName, doctorSpec, doctorI
 
 
     // TODO: fetch availableHours from database, for now only static
-    const data = { doctorId: doctorId,date:'2022-04-28' };
+    const data = {doctorId: doctorId, date: '2022-04-28'};
 
     fetch('/get_data', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
     })
-    .then((response) => response.json())
-    //Then with the data from the response in JSON...
-    .then((data) => {
-      console.log('Success:', data);
-    })
-    //Then with the error genereted...
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+        .then((response) => response.json())
 
-    let availableHours=[
-            "8:00-8:30", "8:30-9:00", "9:00-9:30", "9:30-10:00",
-            "10:00-10:30", "10:30-11:00", "11:00-11:30", "11:30-12:00",
-            "12:00-12:30", "12:30-13:00", "13:00-13:30", "13:30-14:00",
-            "14:00-14:30", "14:30-15:00", "15:00-15:30", "15:30-16:00"]
+        //Then with the data from the response in JSON...
+        .then((data) => {
+            // console.log('Success:', data);
+            let availableHours = data.availableHours;
+            // console.log(availableHours.length);
+            if (availableHours.length !== 0) {
+                generateVisitHourDivs(availableHours);
+            } else {
+                genereateNoneVisitHoursError();
+            }
+        })
 
-    setTimeout(() => {
-        generatevisitHourDivs(availableHours)
-    }, 1000);
+        //Then with the error genereted...
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+    // let availableHours=[
+    //         "8:00-8:30", "8:30-9:00", "9:00-9:30", "9:30-10:00",
+    //         "10:00-10:30", "10:30-11:00", "11:00-11:30", "11:30-12:00",
+    //         "12:00-12:30", "12:30-13:00", "13:00-13:30", "13:30-14:00",
+    //         "14:00-14:30", "14:30-15:00", "15:00-15:30", "15:30-16:00"]
+    //
+    // setTimeout(() => {
+    //     generatevisitHourDivs(availableHours)
+    // }, 1000);
 
 
     // change header info
@@ -55,48 +64,60 @@ function handleReservationBtnClick(doctorImgSrc, doctorName, doctorSpec, doctorI
     body.style.overflow = "hidden";
 }
 
-function generatevisitHourDivs(availableHours) {
+function genereateNoneVisitHoursError() {
+    let visitHoursDiv = document.getElementById("visitHoursDivs");
+    let loadingSpinner = document.getElementById("loadingSpinnerModal");
+    let visitHoursErrorSpan = document.getElementById("visitHoursErrorSpan");
+
+    loadingSpinner.style.display = "none";
+    visitHoursDiv.innerHTML = "";
+    visitHoursErrorSpan.style.display = "block";
+}
+
+function generateVisitHourDivs(availableHours) {
     let visitHoursDiv = document.getElementById("visitHoursDivs");
     let loadingSpinner = document.getElementById("loadingSpinnerModal");
 
     loadingSpinner.style.display = "none";
-        visitHoursDiv.innerHTML = "";
+    visitHoursDiv.innerHTML = "";
 
-        for (let availableHour of availableHours) {
-            // console.log("availableHour -> ", availableHour)
-            let div = document.createElement("div");
-            div.className = "visitHour";
-            div.innerHTML = availableHour;
-            div.onclick = handleHourSelect;
+    for (let availableHour of availableHours) {
+        // console.log("availableHour -> ", availableHour)
+        let div = document.createElement("div");
+        div.className = "visitHour";
+        div.innerHTML = availableHour;
+        div.onclick = handleHourSelect;
 
-            visitHoursDiv.appendChild(div);
-        }
+        visitHoursDiv.appendChild(div);
+    }
 }
 
 function handleExitModal() {
-        let reservationModal = document.getElementsByClassName("reservation-modal-container")[0];
-        let body = document.getElementsByTagName("body")[0];
-        let loadingSpinner = document.getElementById("loadingSpinnerModal");
-        let modalTestType = document.getElementById("testTypesBrowserModal");
+    let reservationModal = document.getElementsByClassName("reservation-modal-container")[0];
+    let body = document.getElementsByTagName("body")[0];
+    let loadingSpinner = document.getElementById("loadingSpinnerModal");
+    let modalTestType = document.getElementById("testTypesBrowserModal");
+    let visitHoursErrorSpan = document.getElementById("visitHoursErrorSpan");
 
-        // reset inputs
-        modalTestType.value = "";
+    // reset inputs
+    modalTestType.value = "";
 
-        // reset style of all visit hours to default
-        resetSelectedVisitHours();
+    // reset style of all visit hours to default
+    resetSelectedVisitHours();
 
-        // delete visitHour divs
-        let visitHoursDiv = document.getElementById("visitHoursDivs");
-        visitHoursDiv.innerHTML = "";
+    // delete visitHour divs
+    let visitHoursDiv = document.getElementById("visitHoursDivs");
+    visitHoursDiv.innerHTML = "";
 
-        // remove items from local storage
-        window.localStorage.removeItem('hourSelected');
-        window.localStorage.removeItem("doctorSelectedId");
+    // remove items from local storage
+    window.localStorage.removeItem('hourSelected');
+    window.localStorage.removeItem("doctorSelectedId");
 
-        loadingSpinner.style.display = "flex";
-        reservationModal.style.display = "none";
-        body.style.overflow = "auto";
-    }
+    loadingSpinner.style.display = "flex";
+    reservationModal.style.display = "none";
+    body.style.overflow = "auto";
+    visitHoursErrorSpan.style.removeProperty("display");
+}
 
 function handleHourSelect(event) {
     // reset style of all visit hours to default
@@ -144,15 +165,20 @@ function handleSubmitModal() {
     };
 
     console.log(submitObject);
-    
+
     fetch("/add_reservation",
-    {
-        method: "POST",
-        body: JSON.stringify(submitObject), 
-        headers: {"Content-Type" : "application/json"}
-    })
-    .then(function(res){ return res.json(); })
-    .then(function(data){ alert( JSON.stringify( data ) ) })
+        {
+            method: "POST",
+            body: JSON.stringify(submitObject),
+            headers: {"Content-Type": "application/json"}
+        })
+        .then(function (res) {
+            return res.json();
+        })
+        .then(function (data) {
+            alert("Pomyślnie zarezerwowano wizytę!");
+            // alert(JSON.stringify(data))
+        })
 
     handleExitModal();
 }

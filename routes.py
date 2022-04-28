@@ -77,11 +77,13 @@ def add_reservation():
     cursor.execute(query, tuple)
     db.commit()
     
-    return render_template(
-        "doctor_list.html",
-        doctors=doctors,
-        specializations=specializations
-    )
+    # return render_template(
+    #     "doctor_list.html",
+    #     doctors=doctors,
+    #     specializations=specializations
+    # )
+
+    return {'status': "OK"}, 200
 
 
 @bp.route('/get_data', methods=['POST'])
@@ -100,11 +102,11 @@ def get_data():
 
     for t in range(int(times)):
         if (start_hour+0.5*t)-int(start_hour+0.5*t)==0:
-            s=str(int(start_hour+0.5*t))+':00:00'
-            e=str(int(start_hour+0.5*t))+':30:00'
+            s=str(int(start_hour+0.5*t))+':00'
+            e=str(int(start_hour+0.5*t))+':30'
         else:
-            s=str(int(start_hour+0.5*t))+':30:00'
-            e=str(int(start_hour+0.5*t)+1)+':00:00'
+            s=str(int(start_hour+0.5*t))+':30'
+            e=str(int(start_hour+0.5*t)+1)+':00'
 
         for i in range(len(reservated_dates)):
             if str(reservated_dates[i][2])!=s and str(reservated_dates[i][3])!=e:
@@ -115,8 +117,7 @@ def get_data():
 
     print(reservation_tab)
 
-    return render_template(
-        "doctor_list.html")
+    return {'availableHours': reservation_tab}, 200
 
 
 
