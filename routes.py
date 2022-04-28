@@ -102,18 +102,23 @@ def get_data():
 
     for t in range(int(times)):
         if (start_hour+0.5*t)-int(start_hour+0.5*t)==0:
-            s=str(int(start_hour+0.5*t))+':00'
-            e=str(int(start_hour+0.5*t))+':30'
+            s=str(int(start_hour+0.5*t))+':00:00'
+            e=str(int(start_hour+0.5*t))+':30:00'
         else:
-            s=str(int(start_hour+0.5*t))+':30'
-            e=str(int(start_hour+0.5*t)+1)+':00'
+            s=str(int(start_hour+0.5*t))+':30:00'
+            e=str(int(start_hour+0.5*t)+1)+':00:00'
+
+        reservation_tab.append({'startTime': s, 'endTime': e, 'flag':True})
 
         for i in range(len(reservated_dates)):
-            if str(reservated_dates[i][2])!=s and str(reservated_dates[i][3])!=e:
-                reservation_tab.append({'startTime':s,'endTime': e})
+            if str(reservated_dates[i][2])==s and str(reservated_dates[i][3])==e :
+                reservation_tab[-1]['flag']=False
+
+    reservation_tab=[ x for x in reservation_tab if x['flag'] is True]
+
 
     for i in range(len(reservation_tab)):
-        reservation_tab[i]=[reservation_tab[i]['startTime']+'-'+reservation_tab[i]['endTime']]
+        reservation_tab[i]=[reservation_tab[i]['startTime'][:-3]+'-'+reservation_tab[i]['endTime'][:-3]]
 
     print(reservation_tab)
 
