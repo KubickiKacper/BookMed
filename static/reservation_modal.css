@@ -111,8 +111,11 @@
 
 #visitHoursDivs {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     flex-wrap: wrap;
+    column-gap: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .visitHour {
