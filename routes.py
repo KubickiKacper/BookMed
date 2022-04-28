@@ -82,3 +82,43 @@ def add_reservation():
         doctors=doctors,
         specializations=specializations
     )
+
+
+@bp.route('/get_data', methods=['POST'])
+def get_data():
+    cursor, db = get_db()
+    content = request.get_json()
+    doctorid=content["doctorId"]
+    date=content["date"]
+    cursor.execute("SELECT id_doctor, date, hour_start, hour_end FROM reservations WHERE id_doctor = %s AND date = %s;",(doctorid,date,))
+    reservated_dates=cursor.fetchall()
+
+    start_hour=8
+    end_hour=16
+    times=(end_hour-start_hour)*2
+    reservation_tab=[]
+
+    for t in range(int(times)):
+        if (start_hour+0.5*t)-int(start_hour+0.5*t)==0:
+            s=str(int(start_hour+0.5*t))+':00:00'
+            e=str(int(start_hour+0.5*t))+':30:00'
+        else:
+            s=str(int(start_hour+0.5*t))+':30:00'
+            e=str(int(start_hour+0.5*t)+1)+':00:00'
+
+        for i in range(len(reservated_dates)):
+            if str(reservated_dates[i][2])!=s and str(reservated_dates[i][3])!=e:
+                reservation_tab.append({'startTime':s,'endTime': e})
+
+    for i in range(len(reservation_tab)):
+        reservation_tab[i]=[reservation_tab[i]['startTime']+'-'+reservation_tab[i]['endTime']]
+
+    print(reservation_tab)
+
+    return render_template(
+        "doctor_list.html")
+
+
+
+
+

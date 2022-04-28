@@ -12,6 +12,25 @@ function handleReservationBtnClick(doctorImgSrc, doctorName, doctorSpec, doctorI
 
 
     // TODO: fetch availableHours from database, for now only static
+    const data = { doctorId: doctorId,date:'2022-04-28' };
+
+    fetch('/get_data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then((response) => response.json())
+    //Then with the data from the response in JSON...
+    .then((data) => {
+      console.log('Success:', data);
+    })
+    //Then with the error genereted...
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+
     let availableHours=[
             "8:00-8:30", "8:30-9:00", "9:00-9:30", "9:30-10:00",
             "10:00-10:30", "10:30-11:00", "11:00-11:30", "11:30-12:00",

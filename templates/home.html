@@ -50,8 +50,10 @@
                 #}
                 {% for doctor in doctors %}
                     <div class="doctor_li">
+                        <a href = 'doctorpage/{{ doctor[5] }}'>
                         <img src="../static/images/doctor{{ doctor[5] }}.png" class="doctor_img_small_circle rounded-circle" alt="Doctor Avatar">
-                        <div class="doctor_li_content">
+                        </a>
+                            <div class="doctor_li_content">
                             <div>
                                 <h6 class="doctor_li_label m-0 h-100">Imię i Nazwisko</h6>
                                 <h5 class="doctor_li_text m-0 h-100">{{ doctor[1] }} {{ doctor[2] }}</h5>
@@ -77,10 +79,11 @@
                     </div>
                 {% endfor %}
 
-
+                <a href = 'doctor_list'>
                 <button id="searchButton" class="btn btn-primary" type="button">
                     <strong>Szukaj</strong>
                 </button>
+                </a>
             </div>
         </div>
     </div>
