@@ -49,7 +49,7 @@
                     specialization  -> doctor[6]
                 #}
                 {% for doctor in doctors %}
-                    <div class="doctor_li">
+                   <div class="doctor_li" data-doctor-name="{{ doctor[1] }} {{ doctor[2] }}" data-doctor-spec="{{ doctor[6] }}">
                         <a href = 'doctorpage/{{ doctor[5] }}'>
                         <img src="../static/images/doctor{{ doctor[5] }}.png" class="doctor_img_small_circle rounded-circle" alt="Doctor Avatar">
                         </a>
@@ -91,6 +91,7 @@
 
 
     <script src="../static/reservationBtn.js"></script>
+    <script src="../static/filtering.js"></script>
 
 
 
