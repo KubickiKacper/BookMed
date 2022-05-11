@@ -49,40 +49,49 @@
                     specialization  -> doctor[6]
                 #}
                 {% for doctor in doctors %}
-                   <div class="doctor_li" data-doctor-name="{{ doctor[1] }} {{ doctor[2] }}" data-doctor-spec="{{ doctor[6] }}">
-                        <a href = 'doctorpage/{{ doctor[5] }}'>
-                        <img src="../static/images/doctor{{ doctor[5] }}.png" class="doctor_img_small_circle rounded-circle" alt="Doctor Avatar">
+                    <div class="doctor_li" data-doctor-name="{{ doctor[1] }} {{ doctor[2] }}"
+                         data-doctor-spec="{{ doctor[6] }}">
+                        <a href='doctorpage/{{ doctor[5] }}'>
+                            <img src="../static/images/doctor{{ doctor[5] }}.png"
+                                 class="doctor_img_small_circle rounded-circle" alt="Doctor Avatar">
                         </a>
-                            <div class="doctor_li_content">
-                            <div>
-                                <h6 class="doctor_li_label m-0 h-100">Imię i Nazwisko</h6>
-                                <h5 class="doctor_li_text m-0 h-100">{{ doctor[1] }} {{ doctor[2] }}</h5>
+                        <div class="doctor_li_content row flex-row">
+                            <div class="col-7 col-md-8 d-flex flex-column flex-md-row align-items-start align-items-md-center">
+                                <div class="col col-md-6">
+                                    <h6 class="doctor_li_label m-0 h-100">Imię i Nazwisko</h6>
+                                    <h5 class="doctor_li_text m-0 h-100">{{ doctor[1] }} {{ doctor[2] }}</h5>
+                                </div>
+                                <div class="col col-md-6 mt-2 mt-md-0">
+                                    <h6 class="doctor_li_label m-0 h-100">Specjalizacja</h6>
+                                    <h5 class="doctor_li_text m-0 h-100">{{ doctor[6] }}</h5>
+                                </div>
                             </div>
-                            <div>
-                                <h6 class="doctor_li_label m-0 h-100">Specjalizacja</h6>
-                                <h5 class="doctor_li_text m-0 h-100">{{ doctor[6] }}</h5>
+
+                            <div class="col-5 col-md-3 mt-4 mt-md-0">
+                                <button
+                                        class="reservation-button"
+                                        type="button"
+                                        onclick="handleReservationBtnClick(
+                                                '../static/images/doctor{{ doctor[5] }}.png',
+                                                '{{ doctor[1] }} {{ doctor[2] }}',
+                                                '{{ doctor[6] }}',
+                                                '{{ doctor[0] }}'
+                                                )"
+                                >
+                                    Rezerwuj
+                                </button>
                             </div>
-                            <button
-                                    class="reservation-button"
-                                    type="button"
-                                    onclick="handleReservationBtnClick(
-                                        '../static/images/doctor{{ doctor[5] }}.png',
-                                        '{{ doctor[1] }} {{ doctor[2] }}',
-                                        '{{ doctor[6] }}',
-                                        '{{ doctor[0] }}'
-                                        )"
-                            >
-                                Rezerwuj
-                            </button>
+
+
                         </div>
 
                     </div>
                 {% endfor %}
 
-                <a href = 'doctor_list'>
-                <button id="searchButton" class="btn btn-primary" type="button">
-                    <strong>Szukaj</strong>
-                </button>
+                <a href='doctor_list'>
+                    <button id="searchButton" class="btn btn-primary" type="button">
+                        <strong>Pokaż więcej</strong>
+                    </button>
                 </a>
             </div>
         </div>

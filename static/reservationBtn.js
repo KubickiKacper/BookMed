@@ -6,13 +6,14 @@ function handleReservationBtnClick(doctorImgSrc, doctorName, doctorSpec, doctorI
     let modalDoctorSpec = document.getElementById("modal-doctor-specialization");
     let dateInput = document.getElementById("dateInputReservationModal");
     let body = document.getElementsByTagName("body")[0];
+    let dateFromLocalStorage = new Date(window.localStorage.getItem("dateSelected"));
 
     // set selected doctor id to local storage
     window.localStorage.setItem("doctorSelectedId", doctorId);
 
 
     // TODO: fetch availableHours from database, for now only static
-    const data = {doctorId: doctorId, date: '2022-04-28'};
+    const data = {doctorId: doctorId, date: formatDate(dateFromLocalStorage)};
 
     fetch('/get_data', {
         method: 'POST',
@@ -57,7 +58,6 @@ function handleReservationBtnClick(doctorImgSrc, doctorName, doctorSpec, doctorI
     modalDoctorSpec.innerHTML = doctorSpec;
 
     // change date input value
-    let dateFromLocalStorage = new Date(window.localStorage.getItem("dateSelected"));
     dateInput.value = formatDate(dateFromLocalStorage);
 
     modal.style.display = "block";
