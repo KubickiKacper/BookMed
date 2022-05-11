@@ -29,6 +29,9 @@ let cal = new Calendar({
     // layoutModifiers: ["month-left-align"],
     dateChanged: (currentDate, events) => {
         window.localStorage.setItem('dateSelected', currentDate);
+        if (window.location.pathname === "/doctor_list") {
+            updateAvailableHours()
+        }
         // console.log("date change", currentDate);
     },
     monthChanged: (currentDate, events) => {

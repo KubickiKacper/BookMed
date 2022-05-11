@@ -474,6 +474,7 @@ box-shadow: 0px 41px 115px 0px rgba(0, 0, 0, 0.08);
     padding: 13px;
     margin-top: 5px;
     cursor: pointer;
+    width: 125px;
 }
 
 .availableHoursDoctorList {
@@ -481,3 +482,17 @@ box-shadow: 0px 41px 115px 0px rgba(0, 0, 0, 0.08);
     column-gap: 20px;
     padding: 10px 0;
 }
+
+.loadingSpinnerDoctorList {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.hiddenBtn {
+    display: none !important;
+}
+
+/*input:invalid {*/
+/*  box-shadow: 0 0 1px 1px red;*/
+/*}*/

@@ -52,21 +52,24 @@
                             </div>
                         </div>
 
-                        <div class="availableHoursDoctorList d-none d-md-flex flex-wrap justify-content-start align-content-around col-6 col-md-6">
-                            <button type="button" class="dateButton">8:00-8:30</button>
-                            <button type="button" class="dateButton">8:00-8:30</button>
-                            <button type="button" class="dateButton">8:00-8:30</button>
-                            <button type="button" class="dateButton">8:00-8:30</button>
-                            <button type="button" class="dateButton">8:00-8:30</button>
-                            <button type="button" class="dateButton">8:00-8:30</button>
-                            <button type="button" class="dateButton">8:00-8:30</button>
-                            <button type="button" class="dateButton">8:00-8:30</button>
-                            <button type="button" class="dateButton">8:00-8:30</button>
-                            <button type="button" class="dateButton">8:00-8:30</button>
-                            <button type="button" class="dateButton">8:00-8:30</button>
+
+                        <div data-doctor-id="{{ doctor[5] }}"
+                             class="availableHoursDoctorList d-none d-md-flex flex-wrap justify-content-start
+                                    align-content-around col-6 col-md-6 col-xxl-5 me-3 me-xxl-0 ps-xl-0 ps-xxl-3">
+                            {# Buttons generated in generateVisitHourButtons() function in doctor_page_get_dates.js #}
+
+                            {# Loading spinner #}
+                            <div data-doctorid="{{ doctor[5] }}" class="loadingSpinnerDoctorList">
+                                <div class="spinner-border" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
 
                         </div>
-                        <div class="col-4 d-block d-md-none">
+
+
+
+                        <div data-doctor-id="{{ doctor[5] }}" class="res_btn_doctor_list hiddenBtn col-4 d-block d-md-none">
                             <button
                                 class="reservation-button-doctor-list"
                                 type="button"
@@ -90,5 +93,8 @@
         </div>
 
     </div>
+
+    <script src="../static/reservations.js"></script>
+    <script src="../static/doctor_page_get_dates.js"></script>
 
 {% endblock %}

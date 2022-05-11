@@ -73,7 +73,16 @@ def add_reservation():
     date_to_save = content["selectedDate"].split()[3] + "-" + month_number_str + "-" + content["selectedDate"].split()[2]
     
     query = """INSERT INTO reservations VALUES ('', %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-    tuple = (content["doctorId"], content["testType"], date_to_save, content["hourFrom"], content["hourTo"], content["patientName"].split()[0],content["patientName"].split()[1], content["patientPhone"], content["infoForDoctor"])
+    tuple = (
+        content["doctorId"],
+        content["testType"],
+        date_to_save,
+        content["hourFrom"],
+        content["hourTo"],
+        content["patientName"].split()[0],
+        content["patientName"].split()[1],
+        content["patientPhone"],
+        content["infoForDoctor"])
     cursor.execute(query, tuple)
     db.commit()
     

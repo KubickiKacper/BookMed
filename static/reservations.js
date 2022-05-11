@@ -154,38 +154,53 @@ function handleSubmitModal() {
     let selectedDate = window.localStorage.getItem("dateSelected");
     let selectedHour = window.localStorage.getItem("hourSelected");
 
-    let hours = selectedHour.split('-');
-    let hourFrom = hours[0];
-    let hourTo = hours[1];
+    if (modalPatientName.checkValidity() && modalPatientPhone.checkValidity() && selectedHour) {
+        console.log("wszystko ok")
 
-    let submitObject = {
-        doctorId: selectedDoctorId,
-        testType: modalTestType.value,
-        selectedDate: selectedDate,
-        hourFrom: hourFrom,
-        hourTo: hourTo,
-        patientName: modalPatientName.value,
-        patientPhone: modalPatientPhone.value,
-        infoForDoctor: modalInfoForDoctor.value
-    };
+        let hours = selectedHour.split('-');
+        let hourFrom = hours[0];
+        let hourTo = hours[1];
 
-    console.log(submitObject);
+        let submitObject = {
+            doctorId: selectedDoctorId,
+            testType: modalTestType.value,
+            selectedDate: selectedDate,
+            hourFrom: hourFrom,
+            hourTo: hourTo,
+            patientName: modalPatientName.value,
+            patientPhone: modalPatientPhone.value,
+            infoForDoctor: modalInfoForDoctor.value
+        };
 
-    fetch("/add_reservation",
-        {
-            method: "POST",
-            body: JSON.stringify(submitObject),
-            headers: {"Content-Type": "application/json"}
-        })
-        .then(function (res) {
-            return res.json();
-        })
-        .then(function (data) {
-            alert("Pomyślnie zarezerwowano wizytę!");
-            // alert(JSON.stringify(data))
-        })
+        console.log(submitObject);
 
-    handleExitModal();
+        fetch("/add_reservation",
+            {
+                method: "POST",
+                body: JSON.stringify(submitObject),
+                headers: {"Content-Type": "application/json"}
+            })
+            .then(function (res) {
+                return res.json();
+            })
+            .then(function (data) {
+                alert("Pomyślnie zarezerwowano wizytę!");
+                // alert(JSON.stringify(data))
+            })
+
+        handleExitModal();
+
+    } else {
+        if (!modalPatientName.checkValidity()) {
+            alert("Proszę podać prawidłowe Imię i Nazwisko")
+        } else if (!modalPatientPhone.checkValidity()) {
+            alert("Proszę podać telefon w formacie '123-123-123'")
+        } else if (!selectedHour) {
+            alert("Proszę wybrać godzinę")
+        }
+    }
+
+
 }
 
 function formatDate(date) {
