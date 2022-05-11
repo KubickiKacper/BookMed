@@ -140,6 +140,11 @@ function resetSelectedVisitHours() {
     }
 }
 
+function handleDateInputChange() {
+    let dateInput = document.getElementById("dateInputReservationModal");
+    cal.setDate(new Date(dateInput.value));
+}
+
 function handleSubmitModal() {
     let modalTestType = document.getElementById("testTypesBrowserModal");
     let modalPatientName = document.getElementById("nameInputModal");
