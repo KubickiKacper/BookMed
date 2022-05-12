@@ -5,6 +5,8 @@ function updateAvailableHours() {
 
     for (let singleHourDiv of availableHoursDivs) {
         let currentDoctorId = singleHourDiv.attributes["data-doctor-id"].value;
+        let currentDoctorName = singleHourDiv.attributes["data-doctor-name"].value;
+        let currentDoctorSpec = singleHourDiv.attributes["data-doctor-spec"].value;
 
         singleHourDiv.innerHTML = "";
         singleHourDiv.appendChild(generateLoadingSpinner(currentDoctorId));
@@ -28,7 +30,7 @@ function updateAvailableHours() {
                 // console.log(availableHours.length);
                 if (availableHours.length !== 0) {
                     // console.log("dostępne godziny -> ", availableHours);
-                    let generatedButtons = generateVisitHourButtons(availableHours, currentDoctorId);
+                    let generatedButtons = generateVisitHourButtons(availableHours, currentDoctorId, currentDoctorName, currentDoctorSpec);
                     for (let button of generatedButtons) {
                         singleHourDiv.appendChild(button);
                     }
@@ -76,7 +78,7 @@ function generateLoadingSpinner(currentDoctorId) {
 //     }
 // })
 
-function generateVisitHourButtons(availableHours, currentDoctorId) {
+function generateVisitHourButtons(availableHours, currentDoctorId, currentDoctorName, currentDoctorSpec) {
     let loadingSpinners = document.getElementsByClassName("loadingSpinnerDoctorList");
     let reservationButtons = document.getElementsByClassName("res_btn_doctor_list");
 
@@ -98,12 +100,26 @@ function generateVisitHourButtons(availableHours, currentDoctorId) {
 
     for (let availableHour of availableHours) {
         // console.log("availableHour -> ", availableHour)
-        let div = document.createElement("button");
-        div.className = "dateButton";
-        div.innerHTML = availableHour;
-        // div.onclick = handleHourSelect;
+        let button = document.createElement("button");
+        button.type = "button";
+        button.className = "dateButton";
+        button.innerHTML = availableHour[0];
+        button.addEventListener("click", function() {
+            console.log("clicked ", availableHour[0]);
 
-        buttonsArray.push(div);
+            // set selectedHour in local storage
+            window.localStorage.setItem('hourSelected', availableHour[0]);
+
+            handleReservationBtnClick(
+                `../static/images/doctor${currentDoctorId}.png`,
+                currentDoctorName,
+                currentDoctorSpec,
+                currentDoctorId
+            );
+
+        });
+
+        buttonsArray.push(button);
     }
 
     return buttonsArray;

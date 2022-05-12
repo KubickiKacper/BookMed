@@ -1,5 +1,9 @@
 function handleReservationBtnClick(doctorImgSrc, doctorName, doctorSpec, doctorId) {
-    // console.log("Clicked ", doctorName);
+    // console.log("doctorImgSrc -> ", doctorImgSrc)
+    // console.log("doctorName -> ", doctorName)
+    // console.log("doctorSpec -> ", doctorSpec)
+    // console.log("doctorId -> ", doctorId)
+
     let modal = document.getElementsByClassName("reservation-modal-container")[0];
     let modalDoctorImage = document.getElementById("modal-doctor-image");
     let modalDoctorName = document.getElementById("modal-doctor-name");
@@ -11,8 +15,6 @@ function handleReservationBtnClick(doctorImgSrc, doctorName, doctorSpec, doctorI
     // set selected doctor id to local storage
     window.localStorage.setItem("doctorSelectedId", doctorId);
 
-
-    // TODO: fetch availableHours from database, for now only static
     const data = {doctorId: doctorId, date: formatDate(dateFromLocalStorage)};
 
     fetch('/get_data', {
@@ -33,6 +35,11 @@ function handleReservationBtnClick(doctorImgSrc, doctorName, doctorSpec, doctorI
                 generateVisitHourDivs(availableHours);
             } else {
                 genereateNoneVisitHoursError();
+            }
+
+            if (window.localStorage.getItem("hourSelected")) {
+                let currentSelectedHour = window.localStorage.getItem("hourSelected");
+                selectHourModal(currentSelectedHour);
             }
         })
 
@@ -132,6 +139,18 @@ function handleHourSelect(event) {
     window.localStorage.setItem('hourSelected', selectedHour);
 }
 
+function selectHourModal(selectedHour) {
+    let visitHours = document.getElementsByClassName("visitHour");
+    // console.log("visitHours -> ", visitHours);
+
+    for (let singleHourDiv of visitHours) {
+        if (singleHourDiv.innerHTML === selectedHour) {
+            singleHourDiv.classList.add("visitHourSelected");
+        }
+    }
+}
+
+
 function resetSelectedVisitHours() {
     // reset style of all visit hours to default
     let visitHours = document.getElementsByClassName("visitHour");
@@ -155,7 +174,7 @@ function handleSubmitModal() {
     let selectedHour = window.localStorage.getItem("hourSelected");
 
     if (modalPatientName.checkValidity() && modalPatientPhone.checkValidity() && selectedHour) {
-        console.log("wszystko ok")
+        // console.log("validityCheck ok")
 
         let hours = selectedHour.split('-');
         let hourFrom = hours[0];
@@ -185,6 +204,11 @@ function handleSubmitModal() {
             })
             .then(function (data) {
                 alert("Pomyślnie zarezerwowano wizytę!");
+
+                if (window.location.pathname === "/doctor_list") {
+                    updateAvailableHours()
+                }
+
                 // alert(JSON.stringify(data))
             })
 

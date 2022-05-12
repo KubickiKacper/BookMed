@@ -78,13 +78,14 @@
     align-content: center;
     justify-content: space-between;
     margin-top: 10px;
+    column-gap: 15px;
 }
 
 .searchModal {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 308px;
+    width: 100%;
     /* max-width: 400px; */
     /* height: 60px; */
     background-color: white;
