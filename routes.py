@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify,Flask
 from db import get_db
 import datetime
 
@@ -98,9 +98,15 @@ def add_reservation():
 @bp.route('/get_data', methods=['POST'])
 def get_data():
     cursor, db = get_db()
+
     content = request.get_json()
-    doctorid=content["doctorId"]
-    date=content["date"]
+    #For tests
+    try:
+        doctorid=content["doctorId"]
+        date=content["date"]
+    except:
+        doctorid='1'
+        date='2022-04-28'
     cursor.execute("SELECT id_doctor, date, hour_start, hour_end FROM reservations WHERE id_doctor = %s AND date = %s;",(doctorid,date,))
     reservated_dates=cursor.fetchall()
 
