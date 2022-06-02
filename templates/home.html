@@ -1,4 +1,17 @@
 {% extends "base.html" %}
+
+{% block login %}
+    {% if isUserLoggedIn %}
+        <a href="/auth/logout" id="loginLink">
+            <button id="loginBtn" class="reservation-button me-5">Wyloguj</button>
+        </a>
+    {% else %}
+        <a href="/auth/login" id="loginLink">
+            <button id="loginBtn" class="reservation-button me-5">Zaloguj</button>
+        </a>
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     {% import 'modals.html' as modals %}
     <div class="row justify-content-between">
