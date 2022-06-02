@@ -140,6 +140,19 @@ def get_data():
     return {'availableHours': reservation_tab}, 200
 
 
+@bp.route("/doctorcalendar")
+def doctorcalendar_page():
+    cursor, db = get_db()
 
+    # content = request.get_json()
+    doctorid = 1  # content["doctorId"]
+    cursor.execute(
+        "SELECT first_name, last_name,phone_number,description, date, hour_start, hour_end,test_type FROM reservations WHERE id_doctor = %s ORDER BY date, hour_start LIMIT 10",
+        (doctorid,))
+    reservated_dates = cursor.fetchall()
+    print(reservated_dates)
 
-
+    return render_template(
+        "doctorcalendar.html",
+        reservated_dates=reservated_dates
+    )

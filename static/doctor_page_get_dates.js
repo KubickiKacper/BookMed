@@ -126,4 +126,3 @@ function generateVisitHourButtons(availableHours, currentDoctorId, currentDoctor
 }
 
 
-

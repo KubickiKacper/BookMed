@@ -23,7 +23,6 @@ class FlaskTest(unittest.TestCase):
             rv = c.post('/get_data', json=params)
             json_data = rv.get_data()
             json_data=json.loads(json_data.decode())
-            print(json_data['availableHours'])
             for i in range(len(json_data['availableHours'])):
                 splitted=str(json_data['availableHours'][i][0]).replace('-',':').split(':')
                 self.assertEqual('-' in str(json_data['availableHours'][i][0]),True)

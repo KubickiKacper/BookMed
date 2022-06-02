@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="doctor_li" >
+
+                        <img src="../static/images/doctor1.png"
+                             class="doctor_img_small_circle rounded-circle" alt="Doctor Avatar">
+
+                        <div class="doctor_li_content row flex-row">
+                            <div class="col-7 col-md-8 d-flex flex-column flex-md-row align-items-start align-items-md-center">
+                                <div class="col col-md-6">
+                                    <h6 class="doctor_li_label m-0 h-100">Imię i Nazwisko</h6>
+                                    <h5 class="doctor_li_text m-0 h-100">Imie Nazwisko</h5>
+                                </div>
+                                <div class="col col-md-6 mt-2 mt-md-0">
+                                    <h6 class="doctor_li_label m-0 h-100">Specjalizacja</h6>
+                                    <h5 class="doctor_li_text m-0 h-100">Spec</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+    <div id="yourVisits">Zaplanowane wizyty:</div>
+
+    <div id="doctors_ul" class="col-xxl-8 col-xl-7">
+    {% for visit in reservated_dates %}
+        <div class="visit_li_list_page">
+
+                <div class="col-7 col-md-8 d-flex flex-column flex-md-row align-items-start align-items-md-center">
+
+                    <div class="col col-md-2 ms-4">
+                        <h6 class="doctor_li_label m-0 h-100">Imię i Nazwisko</h6>
+                        <h5 class="doctor_li_text m-0 h-100">{{ visit[0]}} {{ visit[1] }} </h5>
+                    </div>
+                    <div class="col col-md-2">
+                        <h6 class="doctor_li_label m-0 h-100">Data</h6>
+                        <h5 class="doctor_li_text m-0 h-100">{{ visit[4] }}</h5>
+                    </div>
+                    <div class="col col-md-3">
+                        <h6 class="doctor_li_label m-0 h-100">Godzina rozpoczęcia</h6>
+                        <h5 class="doctor_li_text m-0 h-100">{{ visit[5] }}</h5>
+                    </div>
+                    <div class="col col-md-3">
+                        <h6 class="doctor_li_label m-0 h-100">Godzina Zakończenia</h6>
+                        <h5 class="doctor_li_text m-0 h-100">{{ visit[6] }}</h5>
+                    </div>
+                    <div class="col col-md-2">
+                        <h6 class="doctor_li_label m-0 h-100">Numer telefonu</h6>
+                        <h5 class="doctor_li_text m-0 h-100">{{ visit[2] }}</h5>
+                    </div>
+                    <div class="col col-md-2">
+                        <h6 class="doctor_li_label m-0 h-100">Rodzaj badania</h6>
+                        <h5 class="doctor_li_text m-0 h-100">{{ visit[7] }}</h5>
+                    </div>
+                    <div class="col col-md-1">
+                        <h6 class="doctor_li_label m-0 h-100">Opis</h6>
+                        <h5 class="doctor_li_text m-0 h-100">{{ visit[3] }}</h5>
+                    </div>
+
+            </div>
+
+        </div>
+
+    {% endfor %}
+    </div>
+
+{% endblock %}
